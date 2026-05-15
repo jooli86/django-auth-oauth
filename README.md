@@ -22,30 +22,35 @@ Siga os passos abaixo para configurar o ambiente e rodar a aplicação na sua m�
 ```bash
 git clone [https://github.com/jooli86/django-auth-oauth.git](https://github.com/jooli86/django-auth-oauth.git)
 cd django-auth-oauth
+```
 
 2. Configurar o Ambiente Virtual (Venv)
-
+```bash
 # No Windows:
 python -m venv venv
 venv\Scripts\activate
+```
 
 # No Linux/Mac:
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
 3. Instalar as Dependências
-
+```bash
 pip install -r requirements.txt
+```
 
 4. Rodar as Migrações do Banco de Dados
-
+```bash
 python manage.py migrate
+```
 
 5. Iniciar o Servidor de Desenvolvimento
-
+```bash
 python manage.py runserver
-
-Agora, abra o seu navegador e acesse: http://127.0.0.1:8000/
+```
 
 ## 🛠️ Evolução Técnica do Projeto
 
