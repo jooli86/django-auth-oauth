@@ -39,12 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'tech',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    'django.contrib.sites',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -134,11 +134,5 @@ STATICFILES_DIRS = [
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
-    'github': {
-        'APP': {
-            'client_id': ' ',
-            'secret': ' ',
-            'key': ''
-        }
-    }
+    'github': {}
 }
