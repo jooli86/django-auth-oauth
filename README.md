@@ -46,3 +46,21 @@ python manage.py migrate
 python manage.py runserver
 
 Agora, abra o seu navegador e acesse: http://127.0.0.1:8000/
+
+## 🛠️ Evolução Técnica do Projeto
+
+Durante o desenvolvimento deste ecossistema, o projeto foi refatorado e expandido para suportar padrões robustos de arquitetura e segurança de mercado.
+
+### 1. Refatoração de Arquivos Estáticos (Pathlib)
+*   **Modernização do Código:** Substituição do módulo legado `os.path` pela API moderna `pathlib`, garantindo gerenciamento de caminhos de arquivos mais legível, limpo e resiliente entre diferentes sistemas operacionais.
+*   **Isolamento de Camadas:** Organização rigorosa da pasta `static/` na raiz do projeto, separando os arquivos de identidade visual (`css/`, `assets/`) das camadas de renderização HTML (`templates/`).
+
+### 2. Integração do Ecossistema `django-allauth`
+*   **Acoplamento Extensível:** Instalação e registro da biblioteca `django-allauth[socialaccount]` no núcleo do Django, tratando-a como uma extensão modular da aplicação.
+*   **Interceptação por Middleware:** Configuração do `AccountMiddleware` na esteira de requisições do servidor, garantindo que o fluxo de autenticação seja verificado antes de atingir as views de negócio.
+*   **Roteamento Centralizado:** Injeção das rotas nativas da biblioteca sob o prefixo `/accounts/`, disponibilizando endpoints automáticos de autenticação sem necessidade de codificação manual de formulários.
+
+### 3. Fiação de Segurança OAuth 2.0 (Padrão de Mercado)
+*   **Segurança da Informação:** Rejeição explícita da prática insegura de expor credenciais privadas (`client_id` e `secret`) diretamente no arquivo de texto `settings.py`.
+*   **Acordo de Confiança (GitHub Developers):** Registro da aplicação sob o nome de **Tech News**, mapeando a URL de redirecionamento de segurança (*Authorization Callback URL*) de forma cirúrgica para o endpoint do sistema.
+*   **Persistência Segura:** Armazenamento das chaves criptográficas geradas diretamente no banco de dados local através do painel de **Administração do Django (Admin)**. O arquivo do banco (`db.sqlite3`) encontra-se devidamente protegido no `.gitignore`, eliminando riscos de vazamento de credenciais no controle de versão.
