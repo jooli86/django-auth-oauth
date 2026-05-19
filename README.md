@@ -69,3 +69,13 @@ Durante o desenvolvimento deste ecossistema, o projeto foi refatorado e expandid
 *   **Segurança da Informação:** Rejeição explícita da prática insegura de expor credenciais privadas (`client_id` e `secret`) diretamente no arquivo de texto `settings.py`.
 *   **Acordo de Confiança (GitHub Developers):** Registro da aplicação sob o nome de **Tech News**, mapeando a URL de redirecionamento de segurança (*Authorization Callback URL*) de forma cirúrgica para o endpoint do sistema.
 *   **Persistência Segura:** Armazenamento das chaves criptográficas geradas diretamente no banco de dados local através do painel de **Administração do Django (Admin)**. O arquivo do banco (`db.sqlite3`) encontra-se devidamente protegido no `.gitignore`, eliminando riscos de vazamento de credenciais no controle de versão.
+
+### 4. Proteção de Rotas com Decorators e Segurança no HTML5
+* **Cadeado no Backend:** Injeção do decorator `@login_required` na view de membros (`views.py`), blindando a rota exclusiva contra acessos diretos via digitação manual de URL.
+* **Injeção de Tags Dinâmicas:** Implementação do disjuntor `{% load static %}` no novo template `members.html` para garantir a correta renderização dos ativos visuais e folhas de estilo.
+* **Melhoria de Navegabilidade (UX):** Envelopamento semântico do logotipo da área de membros utilizando a tag dinâmica `{% url 'index' %}`, permitindo o retorno fluido à home page ao clicar na imagem.
+
+### 5. Otimização e Lapidação do Fluxo de Autenticação (UX)
+* **Redirecionamento de Acesso:** Configuração da diretriz `LOGIN_REDIRECT_URL = 'members'`, eliminando o erro nativo de página não encontrada (404 Profile) pós-autenticação.
+* **Autenticação Direta (Bypass de Confirmação):** Ativação da flag `SOCIALACCOUNT_LOGIN_ON_GET = True`, permitindo que o clique no ícone social dispare imediatamente o redirecionamento para o GitHub, eliminando telas intermediárias.
+* **Mapeamento de Logout Expresso:** Inclusão das flags `ACCOUNT_LOGOUT_ON_GET = True` e `LOGOUT_REDIRECT_URL = '/'` para automatizar a destruição da sessão ativa via requisição GET, preparando o terreno para o encerramento de sessão direto pela interface.
